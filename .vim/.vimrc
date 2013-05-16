@@ -4,6 +4,7 @@ set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gbk,gb18030,ucs,big5
 
 set nocompatible
 set ruler
+set backspace=indent,eol,start
 set softtabstop=4
 set shiftwidth=4
 set tabstop=4
