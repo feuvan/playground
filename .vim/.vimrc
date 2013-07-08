@@ -19,10 +19,14 @@ set smartindent
 set autoindent
 set noexpandtab
 
+"force 256 color
+set t_Co=256
+
 "pathogen
 call pathogen#infect() 
 
-set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
+"use airline instead
+"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 syntax on
 
@@ -63,3 +67,11 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "Ctrl-P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+"bufferline
+let g:bufferline_echo=0
+set statusline=%{bufferline#generate_string()}
+
+"airline
+let g:airline_theme='badwolf'
+
