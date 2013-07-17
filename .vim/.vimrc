@@ -13,6 +13,8 @@ set incsearch
 set hlsearch
 set showcmd
 
+set mouse=ar mousemodel=extend
+
 set laststatus=2
 
 set smartindent
