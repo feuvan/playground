@@ -13,7 +13,8 @@ set incsearch
 set hlsearch
 set showcmd
 
-set mouse=ar mousemodel=extend
+set mouse=nicr mousemodel=extend
+set clipboard=unnamed
 
 set laststatus=2
 
@@ -77,3 +78,5 @@ set statusline=%{bufferline#generate_string()}
 "airline
 let g:airline_theme='badwolf'
 
+"YCM
+let g:ycm_confirm_extra_conf = 0
