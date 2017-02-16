@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# https://news.ycombinator.com/item?id=5017108
+# http://test.saurik.com/hackernews/cysh.sh
+
+function title() {
+    echo -ne $'\e]2;'"$@"$'\a\e]1;'"$@"'\a'
+}
+
+function cysh() {
+    data=$1
+    name=$2
+    shift 2
+
+    user=${data%@*}
+    host=${data#*@}
+
+    if [[ $host =~ ^([^.]*|[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)$ ]]; then
+        addr=$host
+    else
+        addr=$(host -t a "${host}" | sed -e $'/.* has address / { s///; p; d; q; }; /.*\tA\t/ { s///; p; d; q; }; d;' | head -n 1)
+    fi
+
+    title "${name}"
+    name=${name//"'"/$'\'\\\'\''}
+
+    while [[ 1 ]]; do
+        ssh "$@" -t -e none \
+            -o ConnectTimeout=2 \
+            -o ServerAliveCountMax=4 \
+            -o ServerAliveInterval=2 \
+            -o TCPKeepAlive=no \
+        "${user}@${addr}" "screen -dRS '${name}'"
+
+        case "$?" in
+            (0) break;;
+            (*) sleep 1;;
+        esac
+    done
+}
+
+cysh "$@"
