@@ -1,16 +1,45 @@
-set background=light
-colorscheme darkblue
-set fileencodings=utf-8-bom,ucs-bom,utf-8,cp936,gbk,gb18030,ucs,big5
+set nocompatible              " be iMproved, required
+filetype on                   " required for compatibility with Mac OS X, See issue #167
+filetype off                  " required
 
-set nocompatible
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kien/ctrlp.vim'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'Yggdroot/indentLine'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
 set ruler
 set backspace=indent,eol,start
-set softtabstop=4
-set shiftwidth=4
-set tabstop=4
 set showmatch
-set incsearch
-set hlsearch
+set hlsearch incsearch smartcase ignorecase
 set showcmd
 
 set mouse=nicr mousemodel=extend
@@ -22,20 +51,17 @@ set smartindent
 set autoindent
 set noexpandtab
 
+set list listchars=tab:→\ ,trail:·
+
 "force 256 color
 set t_Co=256
-
-"pathogen
-call pathogen#infect() 
-
-"use airline instead
-"set rtp+=~/.vim/bundle/powerline/powerline/bindings/vim
 
 syntax on
 
 filetype plugin indent on
 
 map <F2> <Esc>:1,$!xmllint --format -<CR>
+cmap w!! w !sudo tee % > /dev/null
 
 if ! has('gui_running')
 	set ttimeoutlen=10
@@ -70,13 +96,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 "Ctrl-P
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-"bufferline
-let g:bufferline_echo=0
-set statusline=%{bufferline#generate_string()}
+let g:ctrlp_working_path_mode = 'ra'
 
 "airline
+let g:airline_powerline_fonts = 0
 let g:airline_theme='badwolf'
+
+"tmuxline
+let g:tmuxline_powerline_separators = 0
 
 "YCM
 let g:ycm_confirm_extra_conf = 0
