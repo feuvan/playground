@@ -22,7 +22,9 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'Yggdroot/indentLine'
 Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+" Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plugin 'stamblerre/gocode', {'rtp': 'vim/'}
+Plugin 'w0rp/ale'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
