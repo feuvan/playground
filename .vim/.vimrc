@@ -54,6 +54,7 @@ set laststatus=2
 set smartindent
 set autoindent
 set noexpandtab
+set ts=4
 
 set list listchars=tab:→\ ,trail:·
 
